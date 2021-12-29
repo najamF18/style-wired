@@ -1,0 +1,1 @@
+web: gunicorn stylewired.wsgi --log-file -
