@@ -1,13 +1,4 @@
 from enum import Enum
-
-
-class GenderEnum(Enum):
-    MALE = 'Male'
-    FEMALE = 'Female'
-
-    @classmethod
-    def choices(cls):
-        return tuple((i.name, i.value) for i in cls)
     
 class SizeEnum(Enum):
     SMALL = 'Small'
@@ -53,15 +44,6 @@ class BottomFitEnum(Enum):
     NORMAL = 'Normal'
     LOOSE = 'Loose'
     TAPERED = 'Tapered'
-
-    @classmethod
-    def choices(cls):
-        return tuple((i.name, i.value) for i in cls)
-    
-class ShoeCharacteristicEnum(Enum):
-    COMFORT = 'Comfort'
-    STYLE = 'Style'
-    Quality = 'Quality'
 
     @classmethod
     def choices(cls):

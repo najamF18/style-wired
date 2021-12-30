@@ -1,6 +1,12 @@
 from django.db import models
+from general_information.models import (
+    PersonalInfo,
+    InitialProfileDetail,
+    ExtraTailoredSize,
+    ShoeCharacteristic
+)
+
 from .choices import (
-    GenderEnum,
     SizeEnum,
     TopFitEnum,
     BottomFitEnum,
@@ -8,17 +14,10 @@ from .choices import (
     WorkPreferenceEnum,
     ShoeTypeEnum,
     NonosEnum,
-    ColorsEnum,
-    ShoeCharacteristicEnum)
-# Create your models here.
+    ColorsEnum,)
 
-class InitialProfileDetail(models.Model):
-    name = models.CharField(max_length=200)
-    profile_name = models.CharField(max_length=200)
-    gender = models.CharField(choices=GenderEnum.choices(), max_length=200)
-    
-    def __str__(self):
-        return str(self.name)
+
+# Create your models here.
     
 class MenSize(models.Model):
     initial_profile_details = models.ForeignKey(InitialProfileDetail, on_delete=models.CASCADE)
@@ -31,29 +30,13 @@ class MenSize(models.Model):
     def __str__(self):
         return str(self.initial_profile_details.name)
     
-class ExtraTailoredSize(models.Model):
-    neck = models.CharField(choices=SizeEnum.choices(), max_length=100)
-    waist = models.CharField(choices=SizeEnum.choices(), max_length=100)
-    bust = models.CharField(choices=SizeEnum.choices(), max_length=100)
-    hips = models.CharField(choices=SizeEnum.choices(), max_length=100)
-    shoulder = models.CharField(choices=SizeEnum.choices(), max_length=100, blank=True)
-    inside_leg = models.CharField(choices=SizeEnum.choices(), max_length=100, blank=True)
-    
-    def __str__(self):
-        return str(self.id)
-    
-    
-class ShoeCharacteristic(models.Model):
-    charateristic = models.CharField(choices=ShoeCharacteristicEnum.choices(), max_length=100)
-    
-    def __str__(self):
-        return str(self.charateristic)
-    
     
 class StyleProfileMen(models.Model):
+    personal_info = models.ForeignKey(PersonalInfo, on_delete=models.CASCADE)
     men_size = models.ForeignKey(MenSize, on_delete=models.CASCADE)
-    work_preferrence = models.CharField(choices=WorkPreferenceEnum.choices(), max_length=100)
-    casual_preferrence = models.CharField(choices=CasualPreferenceEnum.choices(), max_length=100)
+    extra_tailored_sizes = models.ForeignKey(ExtraTailoredSize, on_delete=models.CASCADE)
+    work_preference = models.CharField(choices=WorkPreferenceEnum.choices(), max_length=100)
+    casual_preference = models.CharField(choices=CasualPreferenceEnum.choices(), max_length=100)
     topfit = models.CharField(choices=TopFitEnum.choices(), max_length=100)
     bottomfit = models.CharField(choices=BottomFitEnum.choices(), max_length=100)
     shoe_characterics = models.ManyToManyField(ShoeCharacteristic)
@@ -66,6 +49,8 @@ class StyleProfileMen(models.Model):
     
     def __str__(self):
         return str(self.men_size.initial_profile_details.name)
+    
+
     
 
     

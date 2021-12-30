@@ -4,7 +4,8 @@ from .models import (
     MenSize,
     ExtraTailoredSize,
     StyleProfileMen,
-    ShoeCharacteristic)
+    ShoeCharacteristic,
+    PersonalInfo)
 # Register your models here.
 
 admin.site.register(InitialProfileDetail)
@@ -12,3 +13,4 @@ admin.site.register(MenSize)
 admin.site.register(ExtraTailoredSize)
 admin.site.register(StyleProfileMen)
 admin.site.register(ShoeCharacteristic)
+admin.site.register(PersonalInfo)

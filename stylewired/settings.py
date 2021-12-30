@@ -47,7 +47,11 @@ INSTALLED_APPS = [
     
     # custom apps
     'accounts',
+    'general_information',
     'men',
+    'women',
+    'order',
+    
 ]
 
 MIDDLEWARE = [
