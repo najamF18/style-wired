@@ -8,7 +8,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
-urlpatterns = [
+urlpatterns = [ 
     path('user-registration/', UserRegistration.as_view(), name='user_registration'),
     path('check/', check.as_view(), name='chcek'),
     # JWT auth
